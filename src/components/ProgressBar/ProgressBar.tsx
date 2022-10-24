@@ -1,0 +1,39 @@
+import './ProgressBar.css';
+
+interface Props {
+    stageCount: number,
+    currentStage: number,
+}
+
+export default function ProgressBar(props: Props) {
+
+    const stages = []
+
+    for (let index = 1; index <= props.stageCount; index++) {
+        const element =
+            <div
+                className={`progress-bar relative rounded-full w-10 aspect-square border 
+                border-gray-300 ml-12 first:ml-0 
+                inline-flex justify-center items-center
+                ${index <= props.currentStage ? 'bg-primary border-0 text-white' : ''}`}
+            >
+                <p
+                    className=
+                    {index <= props.currentStage ? 
+                        'after:bg-primary before:bg-primary' : 
+                        'after:bg-gray-300 before:bg-gray-300'
+                    }
+                >
+                    {index}
+                </p>
+            </div>;
+        stages.push(element)
+    };
+
+    return (
+        <div className="w-max mx-auto my-10 relative">
+            {stages}
+            {/* <div className="absolute w-3/4 h-0.5 bg-black border border-black mx-auto"></div> */}
+        </div>
+    )
+}

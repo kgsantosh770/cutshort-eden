@@ -1,0 +1,19 @@
+.progress-bar p::before, .progress-bar p::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 62.5%;
+    height: 1.2px;
+}
+
+.progress-bar p::before {
+    right: 100%;
+}
+
+.progress-bar p::after{
+    left: 100%;
+}
+
+.progress-bar:first-child p::before, .progress-bar:last-child p::after {
+    display: none;
+}
