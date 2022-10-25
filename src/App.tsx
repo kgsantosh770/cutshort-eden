@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import LogoTitle from "./components/LogoTitle";
 import ProgressBar from "./components/ProgressBar/ProgressBar";
@@ -21,6 +21,7 @@ function App() {
         <Route path='/workspaceinfo' element={<GetWorkspace />} />
         <Route path='/planinfo' element={<GetUsageType />} />
         <Route path='/success' element={<Success />} />
+        <Route path='*' element={<Navigate to='/profileinfo' />} />
       </Routes>
     </div>
   );
