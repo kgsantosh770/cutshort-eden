@@ -6,19 +6,21 @@ import GetProfile from './pages/GetProfile';
 import GetUsageType from './pages/GetUsagePlan';
 import GetWorkspace from './pages/GetWorkspace';
 import Success from './pages/Success';
+import { useOnboardContext } from './context/OnboardContext'
 
 function App() {
+  const {onboardStage} = useOnboardContext();
   return (
     <div className="App mt-9">
-      <LogoTitle />
-      {/* currentStage should be less than or equal to stageCount. */}
-      <ProgressBar stageCount={4} currentStage={1} />
-      <Routes>
-        <Route path='/profileinfo' element={<GetProfile />} />
-        <Route path='/workspaceinfo' element={<GetWorkspace />} />
-        <Route path='/planinfo' element={<GetUsageType />} />
-        <Route path='/success' element={<Success />} />
-      </Routes>
+        <LogoTitle />
+        {/* currentStage should be less than or equal to stageCount. */}
+        <ProgressBar stageCount={4} currentStage={onboardStage} />
+        <Routes>
+          <Route path='/profileinfo' element={<GetProfile />} />
+          <Route path='/workspaceinfo' element={<GetWorkspace />} />
+          <Route path='/planinfo' element={<GetUsageType />} />
+          <Route path='/success' element={<Success />} />
+        </Routes>
     </div>
   );
 }

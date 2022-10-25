@@ -2,10 +2,18 @@ import Card from "../components/Card";
 import Form from "../components/FormHOC/Form";
 import SinglePersonIcon from "../assets/images/person.png";
 import TeamIcon from "../assets/images/team.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetUsageType() {
+  const {setOnboardStage} = useOnboardContext();
+
   const [activeCardId, setActiveCardId] = useState(0);
+
+  useEffect(() => {
+    setOnboardStage(3);
+  }, [])
+  
 
   const CardDetails = [
     {

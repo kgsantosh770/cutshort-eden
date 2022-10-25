@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
 import TickIcon from '../assets/images/tick.png';
+import { useOnboardContext } from '../context/OnboardContext';
 
 export default function Success() {
+    const {setOnboardStage} = useOnboardContext();
+
+    useEffect(() => {
+      setOnboardStage(4);
+    }, [])
+    
     return (
         <div className='w-max mx-auto'>
-            <div className="rounded-full bg-primary w-max p-3 mx-auto mb-9">
+            <div className="rounded-full bg-primary w-max p-3 mx-auto mb-9 mt-20">
                 <img src={TickIcon} alt="tick" />
             </div>
             <p className="text-center text-3xl font-semibold mb-3">Congratulations, Eren!</p>

@@ -1,9 +1,14 @@
+import { ChangeEventHandler } from "react"
+
 interface Props {
     title: string,
     type?: string,
+    name?: string,
     placeholder?: string,
+    value?: string,
     optional?: boolean,
     preText?: string,
+    onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 export default function InputField(props: Props) {
@@ -23,6 +28,9 @@ export default function InputField(props: Props) {
                 <input
                     type="text"
                     placeholder={props.placeholder}
+                    name={props.name}
+                    value={props.value}
+                    onChange={props.onChange}
                     className=
                     {`w-full inline mt-3 border border-gray-200 outline-none py-3 px-4 placeholder:text-gray-400
                     ${props.optional ? 'rounded-r-md border-l-0' : 'rounded-md'}`}

@@ -33,7 +33,6 @@ export default function ProgressBar(props: Props) {
     return (
         <div className="w-max mx-auto my-10 relative">
             {stages}
-            {/* <div className="absolute w-3/4 h-0.5 bg-black border border-black mx-auto"></div> */}
         </div>
     )
 }
