@@ -1,16 +1,19 @@
 import { useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
+
 import TickIcon from '../assets/images/tick.png';
 import { useOnboardContext } from '../context/OnboardContext';
 
 export default function Success() {
-    const { userInfo, setOnboardStage } = useOnboardContext();
+    const navigate = useNavigate();
+    const { userInfo, setOnboardStage, onboardCompleted, setOnboardCompleted } = useOnboardContext();
 
     useEffect(() => {
         setOnboardStage(4);
     }, [])
 
     return (
-        <div className='w-max mx-auto'>
+        <div className='lg:w-max mx-auto'>
             <div className="rounded-full bg-primary w-max p-3 mx-auto mb-9 mt-20">
                 <img src={TickIcon} alt="tick" />
             </div>

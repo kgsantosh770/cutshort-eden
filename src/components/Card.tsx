@@ -9,7 +9,7 @@ interface CardProps {
 export default function Card(props: CardProps) {
     return (
         <button 
-            className={`border rounded-md w-[11.5rem] py-4 px-4 text-left ${props.active ? 'border-primary' : 'border-gray-200 grayscale'}`}
+            className={`border rounded-md mr-3 lg:w-[11.5rem] py-4 px-3 lg:px-4 text-left ${props.active ? 'border-primary' : 'border-gray-200 grayscale'}`}
             onClick={props.onClick}
         >
             <img src={props.icon} alt="" className="mb-4"/>

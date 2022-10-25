@@ -1,26 +1,43 @@
+import { useEffect, useState, FormEvent } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import Card from "../components/Card";
 import Form from "../components/FormHOC/Form";
 import SinglePersonIcon from "../assets/images/person.png";
 import TeamIcon from "../assets/images/team.png";
-import { useEffect, useState } from "react";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetUsageType() {
-  const { setUserInfo, setOnboardStage } = useOnboardContext();
+  const { setUserInfo, setOnboardStage, onboardCompleted, setOnboardCompleted } = useOnboardContext();
 
   const [activeCardId, setActiveCardId] = useState(0);
 
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setOnboardCompleted(true);
+    navigate('/success');
+  }
+
   useEffect(() => {
-    setUserInfo(prevData => {
-      return {
-        ...prevData,
-        workspacePlan: 'For myself'
-      }
-    })
+    //Third stage of onboarding
     setOnboardStage(3);
   }, [])
 
-  const onCardClick = (cardId: number, workspacePlan: string) => {
+  useEffect(() => {
+    // by default set to single user plan
+    setUserInfo(prevData => {
+      return {
+        ...prevData,
+        workspacePlan: "For myself"
+      }
+    })
+
+  }, [activeCardId])
+
+  const onCardClick = (event: FormEvent<HTMLButtonElement> ,cardId: number, workspacePlan: string) => {
+    event.preventDefault();
     setActiveCardId(cardId);
     setUserInfo(prevData => {
       return {
@@ -29,7 +46,6 @@ export default function GetUsageType() {
       }
     })
   }
-
 
   const CardDetails = [
     {
@@ -51,7 +67,7 @@ export default function GetUsageType() {
       title={card.title}
       description={card.description}
       active={activeCardId === index ? true : false}
-      onClick={() => onCardClick(index, card.title)}
+      onClick={(event)=>onCardClick(event, index, card.title)}
     />
   )
 
@@ -60,7 +76,7 @@ export default function GetUsageType() {
       title="How are you planning to use Eden?"
       subtitle="We'll streamline your setup experience accordingly."
       buttonText="Create Workspace"
-      nextPage="/success"
+      handleSubmit={handleSubmit}
     >
       <div className="flex justify-between">
         {cards}

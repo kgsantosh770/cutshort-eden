@@ -14,6 +14,8 @@ interface ContextValueType {
     handleInputChange: (event: FormEvent<HTMLInputElement>) => void,
     onboardStage: number,
     setOnboardStage: React.Dispatch<React.SetStateAction<number>>,
+    onboardCompleted: boolean,
+    setOnboardCompleted: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 interface OnboardContextProps {
@@ -34,6 +36,7 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
     
     const [userInfo, setUserInfo] = useState(initialState);
     const [onboardStage, setOnboardStage] = useState<number>(1);
+    const [onboardCompleted, setOnboardCompleted] = useState<boolean>(false);
 
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.target as HTMLInputElement;
@@ -48,7 +51,7 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
     };
 
     return (
-        <OnboardContext.Provider value={{userInfo, setUserInfo, handleInputChange, onboardStage, setOnboardStage}}>
+        <OnboardContext.Provider value={{userInfo, setUserInfo, handleInputChange, onboardStage, setOnboardStage, onboardCompleted, setOnboardCompleted}}>
             {children}
         </OnboardContext.Provider>
     )

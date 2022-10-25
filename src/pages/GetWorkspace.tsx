@@ -1,22 +1,40 @@
-import { useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import Form from "../components/FormHOC/Form";
 import InputField from "../components/InputField/InputField";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetWorkspace() {
-  const { userInfo, handleInputChange, setOnboardStage } = useOnboardContext();
+  const { userInfo, handleInputChange, onboardStage, setOnboardStage, onboardCompleted } = useOnboardContext();
 
   useEffect(() => {
-      setOnboardStage(2);
+    setOnboardStage(2);
   }, [])
-  
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const workspace = userInfo.workspace;
+    setWorkspaceError(undefined);
+
+    if (workspace === '' || workspace === undefined || workspace === null) {
+      setWorkspaceError('Workspace name cannot be empty');
+    }
+    else {
+      navigate('/planinfo');
+    }
+  }
+
+  const [workspaceError, setWorkspaceError] = useState<string | undefined>(undefined);
 
   return (
     <Form
       title="Let's set up a home for all your work"
       subtitle="You can always create another workspace later."
       buttonText="Create Workspace"
-      nextPage="/planinfo"
+      handleSubmit={handleSubmit}
     >
       <InputField
         title="Workspace Name"
@@ -24,6 +42,7 @@ export default function GetWorkspace() {
         value={userInfo.workspace}
         placeholder="Eden"
         onChange={handleInputChange}
+        errorText={workspaceError}
       />
       <InputField
         title="Workspace URL"
