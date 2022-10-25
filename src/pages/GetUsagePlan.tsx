@@ -36,6 +36,7 @@ export default function GetUsageType() {
       title="How are you planning to use Eden?"
       subtitle="We'll streamline your setup experience accordingly."
       buttonText="Create Workspace"
+      nextPage="/success"
     >
       <div className="flex justify-between">
         {cards}

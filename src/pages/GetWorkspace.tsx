@@ -7,6 +7,7 @@ export default function GetWorkspace() {
             title="Let's set up a home for all your work"
             subtitle="You can always create another workspace later."
             buttonText="Create Workspace"
+            nextPage="/planinfo"
         >
             <InputField title="Workspace Name" placeholder="Eden" />
             <InputField

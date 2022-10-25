@@ -1,7 +1,10 @@
+import {Link} from 'react-router-dom';
+
 interface Props {
     title: string,
     subtitle?: string,
     buttonText?: string,
+    nextPage: string,
     children?: React.ReactNode,
 }
 
@@ -13,11 +16,11 @@ export default function Form(props: Props) {
             <div className="px-7 mt-10 mx-auto max-w-md">
                 {props.children}
                 {props.buttonText &&
-                    <button
-                        className="rounded-md bg-primary w-full mt-8 py-3 text-white"
+                    <Link to={props.nextPage}
+                        className="rounded-md bg-primary block text-center w-full mt-8 py-3 text-white"
                     >
                         {props.buttonText}
-                    </button>
+                    </Link>
                 }
             </div>
         </div>
