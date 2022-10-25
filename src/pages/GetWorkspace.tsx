@@ -4,8 +4,8 @@ import InputField from "../components/InputField/InputField";
 export default function GetWorkspace() {
   return (
     <Form
-            title="Welcome! First things first..."
-            subtitle="You can always change them later."
+            title="Let's set up a home for all your work"
+            subtitle="You can always create another workspace later."
             buttonText="Create Workspace"
         >
             <InputField title="Workspace Name" placeholder="Eden" />

@@ -8,12 +8,8 @@ export default function GetProfile() {
             subtitle="You can always change them later."
             buttonText="Create Workspace"
         >
-            <InputField title="Workspace Name" placeholder="Eden" />
-            <InputField
-                title="Workspace URL"
-                optional={true}
-                placeholder="Example"
-                preText="www.eden.com/" />
+            <InputField title="Full Name" placeholder="Steve Jobs" />
+            <InputField title="Display Name" placeholder="Steve" />
         </Form>
     )
 }
