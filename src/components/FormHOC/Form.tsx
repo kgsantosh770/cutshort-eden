@@ -10,7 +10,7 @@ export default function Form(props: Props) {
         <div className="mx-auto">
             <p className="text-center text-3xl font-semibold mb-3">{props.title}</p>
             {props.subtitle && <p className="text-center text-gray-400">{props.subtitle}</p>}
-            <div className="px-7 mt-12 mx-auto max-w-md">
+            <div className="px-7 mt-10 mx-auto max-w-md">
                 {props.children}
                 {props.buttonText &&
                     <button
