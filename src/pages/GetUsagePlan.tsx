@@ -27,6 +27,7 @@ export default function GetUsageType() {
     title={card.title}
     description={card.description}
     active={activeCardId === index ? true : false}
+    onClick={()=>setActiveCardId(index)}
   />
   )
 
