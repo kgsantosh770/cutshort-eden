@@ -6,14 +6,30 @@ import { useEffect, useState } from "react";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetUsageType() {
-  const {setOnboardStage} = useOnboardContext();
+  const { setUserInfo, setOnboardStage } = useOnboardContext();
 
   const [activeCardId, setActiveCardId] = useState(0);
 
   useEffect(() => {
+    setUserInfo(prevData => {
+      return {
+        ...prevData,
+        workspacePlan: 'For myself'
+      }
+    })
     setOnboardStage(3);
   }, [])
-  
+
+  const onCardClick = (cardId: number, workspacePlan: string) => {
+    setActiveCardId(cardId);
+    setUserInfo(prevData => {
+      return {
+        ...prevData,
+        workspacePlan: workspacePlan
+      }
+    })
+  }
+
 
   const CardDetails = [
     {
@@ -28,15 +44,15 @@ export default function GetUsageType() {
     }
   ]
 
-  const cards = CardDetails.map((card, index) => 
-  <Card 
-    key={index}
-    icon={card.icon}
-    title={card.title}
-    description={card.description}
-    active={activeCardId === index ? true : false}
-    onClick={()=>setActiveCardId(index)}
-  />
+  const cards = CardDetails.map((card, index) =>
+    <Card
+      key={index}
+      icon={card.icon}
+      title={card.title}
+      description={card.description}
+      active={activeCardId === index ? true : false}
+      onClick={() => onCardClick(index, card.title)}
+    />
   )
 
   return (

@@ -10,6 +10,7 @@ interface UserInfoType {
 
 interface ContextValueType {
     userInfo: UserInfoType,
+    setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType>>,
     handleInputChange: (event: FormEvent<HTMLInputElement>) => void,
     onboardStage: number,
     setOnboardStage: React.Dispatch<React.SetStateAction<number>>,
@@ -30,7 +31,7 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
         workspaceUrl: undefined,
         workspacePlan: undefined,
     }
-
+    
     const [userInfo, setUserInfo] = useState(initialState);
     const [onboardStage, setOnboardStage] = useState<number>(1);
 
@@ -47,7 +48,7 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
     };
 
     return (
-        <OnboardContext.Provider value={{userInfo, handleInputChange, onboardStage, setOnboardStage}}>
+        <OnboardContext.Provider value={{userInfo, setUserInfo, handleInputChange, onboardStage, setOnboardStage}}>
             {children}
         </OnboardContext.Provider>
     )

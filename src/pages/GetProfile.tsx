@@ -1,10 +1,15 @@
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import Form from "../components/FormHOC/Form";
 import InputField from "../components/InputField/InputField";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetProfile() {
-    const { userInfo, handleInputChange } = useOnboardContext();
+    const { userInfo, handleInputChange, setOnboardStage } = useOnboardContext();
+
+    useEffect(() => {
+      setOnboardStage(1);
+    }, [])
+    
 
     return (
         <Form
