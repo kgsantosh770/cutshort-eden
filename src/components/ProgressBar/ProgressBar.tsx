@@ -11,6 +11,7 @@ export default function ProgressBar(props: Props) {
         const element =
             <div
                 key={index}
+                data-testid='progressBar'
                 className={`progress-bar relative rounded-full w-10 aspect-square border 
                 border-gray-300 ml-12 first:ml-0 
                 inline-flex justify-center items-center
