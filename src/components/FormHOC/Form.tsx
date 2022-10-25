@@ -7,10 +7,10 @@ interface Props {
 
 export default function Form(props: Props) {
     return (
-        <div className="w-max mx-auto">
+        <div className="mx-auto">
             <p className="text-center text-3xl font-semibold mb-3">{props.title}</p>
             {props.subtitle && <p className="text-center text-gray-400">{props.subtitle}</p>}
-            <div className="px-5 mt-12">
+            <div className="px-7 mt-12 mx-auto max-w-md">
                 {props.children}
                 {props.buttonText &&
                     <button
