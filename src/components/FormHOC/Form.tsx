@@ -14,7 +14,7 @@ export default function Form(props: Props) {
                 {props.children}
                 {props.buttonText &&
                     <button
-                        className="rounded-md bg-primary w-full mt-6 py-3 text-white"
+                        className="rounded-md bg-primary w-full mt-8 py-3 text-white"
                     >
                         {props.buttonText}
                     </button>
