@@ -12,7 +12,7 @@ function App() {
   const { onboardStage } = useOnboardContext();
 
   return (
-    <div className="App mt-9 px-4">
+    <div className="App mt-6 lg:mt-9 px-4">
       <LogoTitle />
       {/* currentStage should be less than or equal to stageCount. */}
       <ProgressBar stageCount={4} currentStage={onboardStage} />

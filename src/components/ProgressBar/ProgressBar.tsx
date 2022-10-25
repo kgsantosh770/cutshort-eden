@@ -19,11 +19,11 @@ export default function ProgressBar(props: Props) {
                 ${index <= props.currentStage ? 'bg-primary border-0 text-white' : ''}`}
             >
                 <p
-                    className=
-                    {index <= props.currentStage ? 
+                    className={`after:w-[1.5rem] lg:after:w-[1.6rem] before:w-[1.51rem] lg:before:w-[1.6rem] before:right-full after:left-full
+                    ${index <= props.currentStage ? 
                         'after:bg-primary before:bg-primary' : 
                         'after:bg-gray-300 before:bg-gray-300'
-                    }
+                    }`}
                 >
                     {index}
                 </p>
