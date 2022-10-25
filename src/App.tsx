@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import LogoTitle from "./components/LogoTitle";
 import ProgressBar from "./components/ProgressBar/ProgressBar";
@@ -7,11 +7,10 @@ import GetUsageType from './pages/GetUsagePlan';
 import GetWorkspace from './pages/GetWorkspace';
 import Success from './pages/Success';
 import { useOnboardContext } from './context/OnboardContext'
-import { useEffect } from 'react';
 
 function App() {
-  const { onboardStage, onboardCompleted } = useOnboardContext();
-  
+  const { onboardStage } = useOnboardContext();
+
   return (
     <div className="App mt-9 px-4">
       <LogoTitle />

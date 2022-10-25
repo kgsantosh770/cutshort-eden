@@ -8,22 +8,23 @@ import TeamIcon from "../assets/images/team.png";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetUsageType() {
-  const { setUserInfo, setOnboardStage, onboardCompleted, setOnboardCompleted } = useOnboardContext();
+  const { setUserInfo, onboardStage, setOnboardStage } = useOnboardContext();
 
   const [activeCardId, setActiveCardId] = useState(0);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(onboardStage < 2)
+      navigate('/workspaceinfo');
+    else
+      setOnboardStage(3);
+  }, [])
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setOnboardCompleted(true);
     navigate('/success');
   }
-
-  useEffect(() => {
-    //Third stage of onboarding
-    setOnboardStage(3);
-  }, [])
 
   useEffect(() => {
     // by default set to single user plan

@@ -6,10 +6,13 @@ import { useOnboardContext } from '../context/OnboardContext';
 
 export default function Success() {
     const navigate = useNavigate();
-    const { userInfo, setOnboardStage, onboardCompleted, setOnboardCompleted } = useOnboardContext();
+    const { userInfo, onboardStage, setOnboardStage} = useOnboardContext();
 
     useEffect(() => {
-        setOnboardStage(4);
+        if(onboardStage < 3)
+            navigate('/planinfo');
+        else
+            setOnboardStage(4);
     }, [])
 
     return (

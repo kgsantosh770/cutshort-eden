@@ -6,7 +6,7 @@ import InputField from "../components/InputField/InputField";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetProfile() {
-    const { userInfo, handleInputChange, setOnboardStage, onboardCompleted } = useOnboardContext();
+    const { userInfo, handleInputChange, setOnboardStage} = useOnboardContext();
 
     useEffect(() => {
         setOnboardStage(1);

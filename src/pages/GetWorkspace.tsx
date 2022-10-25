@@ -6,13 +6,17 @@ import InputField from "../components/InputField/InputField";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetWorkspace() {
-  const { userInfo, handleInputChange, onboardStage, setOnboardStage, onboardCompleted } = useOnboardContext();
+  const { userInfo, handleInputChange, onboardStage, setOnboardStage } = useOnboardContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setOnboardStage(2);
+    console.log('came inside useeffect');
+    console.log(onboardStage);
+    if(onboardStage < 1)
+      navigate('/profileinfo');
+    else
+      setOnboardStage(2);
   }, [])
-
-  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
