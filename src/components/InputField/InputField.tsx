@@ -35,7 +35,7 @@ export default function InputField(props: Props) {
                     className=
                     {`w-full inline mt-3 border border-gray-200 outline-none py-3 px-4 placeholder:text-gray-400
                     ${props.optional ? 'rounded-r-md border-l-0' : 'rounded-md'}`}
-                // required={props.optional ? false : true}
+                    required={props.optional ? false : true}
                 />
                 {props.errorText &&
                     <p className="text-red-400 ml-1 mt-1 font-semibold text-sm">{props.errorText}</p>
