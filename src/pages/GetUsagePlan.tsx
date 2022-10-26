@@ -3,22 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 import Card from "../components/Card/Card";
 import Form from "../components/FormHOC/Form";
-import SinglePersonIcon from "../assets/images/person.png";
-import TeamIcon from "../assets/images/team.png";
-import { useOnboardContext } from "../context/OnboardContext";
+import { useOnboardContext, WorkspacePlans } from "../context/OnboardContext";
 
 export default function GetUsageType() {
-  const { setUserInfo, onboardStage, setOnboardStage } = useOnboardContext();
-
-  const [activeCardId, setActiveCardId] = useState(0);
-
+  const { userInfo, setUserInfo, onboardStage, setOnboardStage } = useOnboardContext();
+  const [activeWorkspaceId, setActiveWorkspaceId] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     if(onboardStage < 2)
       navigate('/workspaceinfo');
-    else
+    else{
       setOnboardStage(3);
+      const workspacePlan = userInfo.workspacePlan;
+      if(workspacePlan !== undefined && workspacePlan.id !== undefined){
+        setActiveWorkspaceId(workspacePlan?.id);
+      }
+    }
   }, [])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -26,49 +27,39 @@ export default function GetUsageType() {
     navigate('/success');
   }
 
-  useEffect(() => {
-    // by default set to single user plan
-    setUserInfo(prevData => {
-      return {
-        ...prevData,
-        workspacePlan: "For myself"
-      }
-    })
-
-  }, [activeCardId])
-
-  const onCardClick = (event: FormEvent<HTMLButtonElement> ,cardId: number, workspacePlan: string) => {
+  const onCardClick = (event: FormEvent<HTMLButtonElement>, workspaceId: number) => {
     event.preventDefault();
-    setActiveCardId(cardId);
+    setActiveWorkspaceId(workspaceId);
+    const workspacePlan = WorkspacePlans.find(workspace => workspace.id === workspaceId);
     setUserInfo(prevData => {
       return {
         ...prevData,
-        workspacePlan: workspacePlan
+        workspacePlan: workspacePlan,
       }
     })
   }
 
-  const CardDetails = [
-    {
-      icon: SinglePersonIcon,
-      title: "For myself",
-      description: "Write better. Think more clearly. Stay organized.",
-    },
-    {
-      icon: TeamIcon,
-      title: "With my team",
-      description: "Wikis, docs, tasks & projects, all in one place.",
-    }
-  ]
+  // const CardDetails = [
+  //   {
+  //     icon: SinglePersonIcon,
+  //     title: "For myself",
+  //     description: "Write better. Think more clearly. Stay organized.",
+  //   },
+  //   {
+  //     icon: TeamIcon,
+  //     title: "With my team",
+  //     description: "Wikis, docs, tasks & projects, all in one place.",
+  //   }
+  // ]
 
-  const cards = CardDetails.map((card, index) =>
+  const cards = WorkspacePlans.map((workspace) =>
     <Card
-      key={index}
-      icon={card.icon}
-      title={card.title}
-      description={card.description}
-      active={activeCardId === index ? true : false}
-      onClick={(event)=>onCardClick(event, index, card.title)}
+      key={workspace.id}
+      icon={workspace.icon}
+      title={workspace.planName}
+      description={workspace.description}
+      active={activeWorkspaceId === workspace.id ? true : false}
+      onClick={(event)=>onCardClick(event, workspace.id)}
     />
   )
 

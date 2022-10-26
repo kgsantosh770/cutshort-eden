@@ -1,11 +1,36 @@
 import { createContext, useContext, useEffect, useState, ReactNode, FormEvent } from "react"
 
+import SinglePersonIcon from "../assets/images/person.png";
+import TeamIcon from "../assets/images/team.png";
+
+interface IWorkspacePlan {
+    id: number,
+    planName: string,
+    icon: string,
+    description: string,
+}
+
+const WorkspacePlans: IWorkspacePlan[] = [
+    {
+        id: 0,
+        planName: 'For myself',
+        icon: SinglePersonIcon,
+        description: "Write better. Think more clearly. Stay organized.",
+    },
+    {
+        id: 1,
+        planName: "With my team",
+        icon: TeamIcon,
+        description: "Wikis, docs, tasks & projects, all in one place.",
+    }
+]
+
 interface UserInfoType {
     fullname?: string,
     displayname?: string,
     workspace?: string,
     workspaceUrl?: string,
-    workspacePlan?: string,
+    workspacePlan?: IWorkspacePlan,
 }
 
 interface ContextValueType {
@@ -23,15 +48,15 @@ interface OnboardContextProps {
 const OnboardContext = createContext<ContextValueType>(undefined!);
 
 const OnboardContexProvider = ({ children }: OnboardContextProps) => {
-    
-    const initialState : UserInfoType = {
+
+    const initialState: UserInfoType = {
         fullname: undefined,
         displayname: undefined,
         workspace: undefined,
         workspaceUrl: undefined,
         workspacePlan: undefined,
     }
-    
+
     const [userInfo, setUserInfo] = useState(initialState);
     const [onboardStage, setOnboardStage] = useState<number>(0);
 
@@ -48,7 +73,7 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
     };
 
     return (
-        <OnboardContext.Provider value={{userInfo, setUserInfo, handleInputChange, onboardStage, setOnboardStage}}>
+        <OnboardContext.Provider value={{ userInfo, setUserInfo, handleInputChange, onboardStage, setOnboardStage }}>
             {children}
         </OnboardContext.Provider>
     )
@@ -56,4 +81,4 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
 
 const useOnboardContext = () => useContext(OnboardContext);
 
-export { OnboardContexProvider, useOnboardContext };
+export { OnboardContexProvider, useOnboardContext, WorkspacePlans };
