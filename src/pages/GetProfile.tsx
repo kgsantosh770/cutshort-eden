@@ -21,10 +21,10 @@ export default function GetProfile() {
         setFullNameError(undefined);
         setDisplayNameError(undefined);
 
-        if (fullName === '' || fullName === undefined || fullName === null){
+        if (fullName === '' || fullName === null){
             setFullNameError('Full name cannot be empty');
         }
-        else if (displayName === '' || displayName === undefined || displayName === null){
+        else if (displayName === '' || displayName === null){
             setDisplayNameError('Display name cannot be empty');
         } 
         else {

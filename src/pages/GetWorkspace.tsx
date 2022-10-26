@@ -10,8 +10,6 @@ export default function GetWorkspace() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('came inside useeffect');
-    console.log(onboardStage);
     if(onboardStage < 1)
       navigate('/profileinfo');
     else
@@ -23,7 +21,7 @@ export default function GetWorkspace() {
     const workspace = userInfo.workspace;
     setWorkspaceError(undefined);
 
-    if (workspace === '' || workspace === undefined || workspace === null) {
+    if (workspace === '' || workspace === null) {
       setWorkspaceError('Workspace name cannot be empty');
     }
     else {

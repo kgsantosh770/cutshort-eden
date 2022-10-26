@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, ReactNode, FormEvent } from "react"
+import { createContext, useContext, useState, ReactNode, FormEvent } from "react"
 
 import SinglePersonIcon from "../assets/images/person.png";
 import TeamIcon from "../assets/images/team.png";
@@ -45,15 +45,15 @@ interface OnboardContextProps {
     children: ReactNode,
 }
 
-const OnboardContext = createContext<ContextValueType>(undefined!);
+const OnboardContext = createContext<ContextValueType>({} as ContextValueType);
 
 const OnboardContexProvider = ({ children }: OnboardContextProps) => {
 
     const initialState: UserInfoType = {
-        fullname: undefined,
-        displayname: undefined,
-        workspace: undefined,
-        workspaceUrl: undefined,
+        fullname: '',
+        displayname: '',
+        workspace: '',
+        workspaceUrl: '',
         workspacePlan: undefined,
     }
 
