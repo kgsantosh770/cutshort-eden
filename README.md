@@ -9,6 +9,10 @@ The user interface is matched as per this [dribble](https://dribbble.com/shots/1
 The web application is hosted in heroku (cloud application platform). The hosted application can be accessed using the following link.
 [https://eden-onboard.herokuapp.com/](https://eden-onboard.herokuapp.com/)
 
+## Pre-requisites
+- node.js
+- npm
+
 ## Major Tech Stack
 - ReactJS
 - Typescript
@@ -20,3 +24,9 @@ The web application is hosted in heroku (cloud application platform). The hosted
 2. Run `npm install` to install the project dependencies.
 3. `npm start` to run the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Testing
+
+Currently only few basic unit test cases have been developed for all of the components.
+Run `npm run test` to run all the tests.
+
