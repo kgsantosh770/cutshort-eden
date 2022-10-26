@@ -18,6 +18,7 @@ export default function Form(props: Props) {
                 {props.children}
                 {props.buttonText &&
                     <button
+                        data-testid="formButton"
                         type="submit"
                         className="rounded-md bg-primary w-full mt-8 py-3 text-white"
                     >
