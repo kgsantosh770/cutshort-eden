@@ -9,7 +9,7 @@ interface Props {
     optional?: boolean,
     preText?: string,
     errorText?: string,
-    onChange: ChangeEventHandler<HTMLInputElement>
+    onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export default function InputField(props: Props) {
@@ -27,6 +27,7 @@ export default function InputField(props: Props) {
                     </span>
                 }
                 <input
+                    data-testid="inputBox"
                     type="text"
                     placeholder={props.placeholder}
                     name={props.name}
@@ -34,7 +35,7 @@ export default function InputField(props: Props) {
                     onChange={props.onChange}
                     className=
                     {`w-full inline mt-3 border border-gray-200 outline-none py-3 px-4 placeholder:text-gray-400
-                    ${props.optional ? 'rounded-r-md border-l-0' : 'rounded-md'}`}
+                    ${props.preText ? 'rounded-r-md border-l-0' : 'rounded-md'}`}
                     required={props.optional ? false : true}
                 />
                 {props.errorText &&
