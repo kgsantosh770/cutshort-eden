@@ -11,12 +11,12 @@ export default function GetUsageType() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(onboardStage < 2)
+    if (onboardStage < 2)
       navigate('/workspaceinfo');
-    else{
+    else {
       setOnboardStage(3);
       const workspacePlan = userInfo.workspacePlan;
-      if(workspacePlan !== undefined && workspacePlan.id !== undefined){
+      if (workspacePlan !== undefined && workspacePlan.id !== undefined) {
         setActiveWorkspaceId(workspacePlan?.id);
       }
     }
@@ -39,19 +39,6 @@ export default function GetUsageType() {
     })
   }
 
-  // const CardDetails = [
-  //   {
-  //     icon: SinglePersonIcon,
-  //     title: "For myself",
-  //     description: "Write better. Think more clearly. Stay organized.",
-  //   },
-  //   {
-  //     icon: TeamIcon,
-  //     title: "With my team",
-  //     description: "Wikis, docs, tasks & projects, all in one place.",
-  //   }
-  // ]
-
   const cards = WorkspacePlans.map((workspace) =>
     <Card
       key={workspace.id}
@@ -59,7 +46,7 @@ export default function GetUsageType() {
       title={workspace.planName}
       description={workspace.description}
       active={activeWorkspaceId === workspace.id ? true : false}
-      onClick={(event)=>onCardClick(event, workspace.id)}
+      onClick={(event) => onCardClick(event, workspace.id)}
     />
   )
 
