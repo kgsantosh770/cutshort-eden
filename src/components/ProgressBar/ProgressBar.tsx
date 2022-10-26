@@ -1,9 +1,9 @@
-interface Props {
+interface IProgressBarProps {
     stageCount: number,
     currentStage: number,
 }
 
-export default function ProgressBar(props: Props) {
+export default function ProgressBar(props: IProgressBarProps) {
 
     const stages = []
 
@@ -20,10 +20,10 @@ export default function ProgressBar(props: Props) {
                 <p
                     className={`after:w-[25px] before:w-[25px] before:right-full after:left-full
                     after:content-[''] before:content-[''] after:absolute before:absolute after:top-1/2 before:top-1/2 after:h-[1.2px] before:h-[1.2px]
-                    ${index <= props.currentStage ? 
-                        'after:bg-primary before:bg-primary' : 
-                        'after:bg-gray-300 before:bg-gray-300'
-                    }`}
+                    ${index <= props.currentStage ?
+                            'after:bg-primary before:bg-primary' :
+                            'after:bg-gray-300 before:bg-gray-300'
+                        }`}
                 >
                     {index}
                 </p>

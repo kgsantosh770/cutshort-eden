@@ -6,11 +6,12 @@ import InputField from "../components/InputField/InputField";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetWorkspace() {
+  const [workspaceError, setWorkspaceError] = useState<string | undefined>(undefined);
   const { userInfo, handleInputChange, onboardStage, setOnboardStage } = useOnboardContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(onboardStage < 1)
+    if (onboardStage < 1)
       navigate('/profileinfo');
     else
       setOnboardStage(2);
@@ -28,8 +29,6 @@ export default function GetWorkspace() {
       navigate('/planinfo');
     }
   }
-
-  const [workspaceError, setWorkspaceError] = useState<string | undefined>(undefined);
 
   return (
     <Form

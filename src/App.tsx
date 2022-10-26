@@ -7,13 +7,14 @@ import GetUsageType from './pages/GetUsagePlan';
 import GetWorkspace from './pages/GetWorkspace';
 import Success from './pages/Success';
 import { useOnboardContext } from './context/OnboardContext'
+import Logo from './assets/images/logo.png';
 
 function App() {
   const { onboardStage } = useOnboardContext();
 
   return (
     <div className="App my-6 lg:mt-9 px-4">
-      <LogoTitle />
+      <LogoTitle icon={Logo} title="Eden"/>
       {/* currentStage should be less than or equal to stageCount. */}
       <ProgressBar stageCount={4} currentStage={onboardStage} />
       <Routes>

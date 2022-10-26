@@ -1,15 +1,14 @@
 import { FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-interface Props {
+interface IFormProps {
     title: string,
     subtitle?: string,
     buttonText?: string,
     children?: React.ReactNode,
-    handleSubmit: (event: FormEvent<HTMLFormElement>)=>void,
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void,
 }
 
-export default function Form(props: Props) {
+export default function Form(props: IFormProps) {
     return (
         <form className="mx-auto" onSubmit={props.handleSubmit}>
             <p className="text-center text-3xl font-semibold mb-3">{props.title}</p>

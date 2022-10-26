@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import TickIcon from '../assets/images/tick.png';
 import { useOnboardContext } from '../context/OnboardContext';
 
 export default function Success() {
     const navigate = useNavigate();
-    const { userInfo, onboardStage, setOnboardStage} = useOnboardContext();
+    const { userInfo, onboardStage, setOnboardStage } = useOnboardContext();
 
     useEffect(() => {
-        if(onboardStage < 3)
+        if (onboardStage < 3)
             navigate('/planinfo');
         else
             setOnboardStage(4);
