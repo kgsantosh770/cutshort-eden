@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from "react"
 
-interface Props {
+interface IInputFieldProps {
     title: string,
     type?: string,
     name?: string,
@@ -12,7 +12,12 @@ interface Props {
     onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
-export default function InputField(props: Props) {
+InputField.defaultProps = {
+    type: 'text',
+    optional: false,
+}
+
+export default function InputField(props: IInputFieldProps) {
     return (
         <>
             <div className="mt-7">
@@ -44,9 +49,4 @@ export default function InputField(props: Props) {
             </div>
         </>
     )
-}
-
-InputField.defaultProps = {
-    type: 'text',
-    optional: false,
 }

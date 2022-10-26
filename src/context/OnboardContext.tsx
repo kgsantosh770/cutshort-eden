@@ -3,6 +3,7 @@ import { createContext, useContext, useState, ReactNode, FormEvent } from "react
 import SinglePersonIcon from "../assets/images/person.png";
 import TeamIcon from "../assets/images/team.png";
 
+//interface for workspace usage type
 interface IWorkspacePlan {
     id: number,
     planName: string,
@@ -10,6 +11,30 @@ interface IWorkspacePlan {
     description: string,
 }
 
+//interface for the user selected information state
+interface IUserInfoType {
+    fullname?: string,
+    displayname?: string,
+    workspace?: string,
+    workspaceUrl?: string,
+    workspacePlan?: IWorkspacePlan,
+}
+
+//interface for the onboard context
+interface IContextValueType {
+    userInfo: IUserInfoType,
+    setUserInfo: React.Dispatch<React.SetStateAction<IUserInfoType>>,
+    handleInputChange: (event: FormEvent<HTMLInputElement>) => void,
+    onboardStage: number,
+    setOnboardStage: React.Dispatch<React.SetStateAction<number>>,
+}
+
+//prop interface for the children inside onboard context provider
+interface IOnboardContextProps {
+    children: ReactNode,
+}
+
+//workspace types
 const WorkspacePlans: IWorkspacePlan[] = [
     {
         id: 0,
@@ -25,31 +50,10 @@ const WorkspacePlans: IWorkspacePlan[] = [
     }
 ]
 
-interface UserInfoType {
-    fullname?: string,
-    displayname?: string,
-    workspace?: string,
-    workspaceUrl?: string,
-    workspacePlan?: IWorkspacePlan,
-}
+const OnboardContext = createContext<IContextValueType>({} as IContextValueType);
 
-interface ContextValueType {
-    userInfo: UserInfoType,
-    setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType>>,
-    handleInputChange: (event: FormEvent<HTMLInputElement>) => void,
-    onboardStage: number,
-    setOnboardStage: React.Dispatch<React.SetStateAction<number>>,
-}
-
-interface OnboardContextProps {
-    children: ReactNode,
-}
-
-const OnboardContext = createContext<ContextValueType>({} as ContextValueType);
-
-const OnboardContexProvider = ({ children }: OnboardContextProps) => {
-
-    const initialState: UserInfoType = {
+const OnboardContexProvider = ({ children }: IOnboardContextProps) => {
+    const initialState: IUserInfoType = {
         fullname: '',
         displayname: '',
         workspace: '',
@@ -60,6 +64,8 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
     const [userInfo, setUserInfo] = useState(initialState);
     const [onboardStage, setOnboardStage] = useState<number>(0);
 
+    //function to change the user state
+    //invoked when the input fields use this function.
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.target as HTMLInputElement;
         setUserInfo(
@@ -80,5 +86,4 @@ const OnboardContexProvider = ({ children }: OnboardContextProps) => {
 }
 
 const useOnboardContext = () => useContext(OnboardContext);
-
 export { OnboardContexProvider, useOnboardContext, WorkspacePlans };

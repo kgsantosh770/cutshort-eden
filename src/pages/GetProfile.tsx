@@ -6,7 +6,9 @@ import InputField from "../components/InputField/InputField";
 import { useOnboardContext } from "../context/OnboardContext";
 
 export default function GetProfile() {
-    const { userInfo, handleInputChange, setOnboardStage} = useOnboardContext();
+    const [fullNameError, setFullNameError] = useState<string | undefined>(undefined);
+    const [displayNameError, setDisplayNameError] = useState<string | undefined>(undefined);
+    const { userInfo, handleInputChange, setOnboardStage } = useOnboardContext();
 
     useEffect(() => {
         setOnboardStage(1);
@@ -21,19 +23,16 @@ export default function GetProfile() {
         setFullNameError(undefined);
         setDisplayNameError(undefined);
 
-        if (fullName === '' || fullName === null){
+        if (fullName === '' || fullName === null) {
             setFullNameError('Full name cannot be empty');
         }
-        else if (displayName === '' || displayName === null){
+        else if (displayName === '' || displayName === null) {
             setDisplayNameError('Display name cannot be empty');
-        } 
+        }
         else {
             navigate('/workspaceinfo');
         }
     }
-
-    const [fullNameError, setFullNameError] = useState<string | undefined>(undefined);
-    const [displayNameError, setDisplayNameError] = useState<string | undefined>(undefined);
 
     return (
         <Form
