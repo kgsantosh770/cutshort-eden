@@ -1,7 +1,7 @@
 import { useEffect, useState, FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import Card from "../components/Card";
+import Card from "../components/Card/Card";
 import Form from "../components/FormHOC/Form";
 import SinglePersonIcon from "../assets/images/person.png";
 import TeamIcon from "../assets/images/team.png";

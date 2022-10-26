@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import LogoTitle from "./components/LogoTitle";
+import LogoTitle from "./components/LogoTitle/LogoTitle";
 import ProgressBar from "./components/ProgressBar/ProgressBar";
 import GetProfile from './pages/GetProfile';
 import GetUsageType from './pages/GetUsagePlan';
