@@ -1,10 +1,10 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import LogoTitle from "./LogoTitle";
 
-describe('LogoTitle', () => { 
+describe('LogoTitle', () => {
 
-    it('renders properly', ()=>{
+    it('renders properly', () => {
         render(<LogoTitle />);
         const logoText = screen.getByText('Eden');
         expect(logoText).toBeInTheDocument;
